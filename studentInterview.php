@@ -12,14 +12,14 @@ if ($conn->connect_error) {
 } 
 function getAns($stuid){
     global $conn;
-$sql = "SELECT interview_no from student_interview_mapping where student_id=".$stuid;
+$sql = "SELECT interview_id from interviews_master where student_id=".$stuid . ", status='active'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         
-        echo $row["interview_no"]."<br>";
+        echo $row["interview_id"]."<br>";
     }
 } else {
     echo "no interview scheduled for this roll number";

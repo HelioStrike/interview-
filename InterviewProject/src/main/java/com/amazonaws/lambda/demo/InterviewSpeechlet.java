@@ -22,7 +22,7 @@ import com.amazon.speech.ui.Reprompt;
 public class InterviewSpeechlet  implements SpeechletV2{
 	private static final Logger log = LoggerFactory.getLogger(InterviewSpeechlet.class);
  //public static Connection con;
-  public static String ec2_ip="http://ec2-54-225-27-44.compute-1.amazonaws.com";
+  public static String ec2_ip="http://ec2-3-121-215-245.eu-central-1.compute.amazonaws.com/interview";
  public static int counter=0;
  public static String convo="";
  public static String rollno;
@@ -204,7 +204,7 @@ public class InterviewSpeechlet  implements SpeechletV2{
 				String correct_ans_para=formatting(correct_ans);
 				String answer_para=formatting(answer);
 				System.out.println("sys3");
-				String update_history_url="http://ec2-54-225-27-44.compute-1.amazonaws.com/putInterviewHistory.php?interview_id="+interview_id+"&question_id="+i+"&student_id='"+id+"'&question='"+question_para+"'&correct_answer='"+correct_ans_para+"'&response_answer='"+answer_para+"'&grade='"+grade+"'";
+				String update_history_url=ec2_ip+"/putInterviewHistory.php?interview_id="+interview_id+"&question_id="+i+"&student_id='"+id+"'&question='"+question_para+"'&correct_answer='"+correct_ans_para+"'&response_answer='"+answer_para+"'&grade='"+grade+"'";
                 String update_info=urlCode(update_history_url);
                 System.out.println(update_info);
 				session.setAttribute("grade"+i,grade);
