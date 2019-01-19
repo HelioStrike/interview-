@@ -126,7 +126,7 @@ public class InterviewSpeechlet  implements SpeechletV2{
 	{
 		Slot Yes=intent.getSlot("type");
         String user_ans=Yes.getValue();
-        String resString="";
+        String resString="hello";
         String id=(String)session.getAttribute("NetraId");
         if(user_ans.equalsIgnoreCase("yes"))
                {
@@ -144,28 +144,26 @@ public class InterviewSpeechlet  implements SpeechletV2{
         	String url2_is=ec2_ip+"/interviewNoToQuestion.php?interview='"+interview_no+"'";	
         	String qbank=urlCode(url2_is);
         	System.out.println("question back is "+qbank);        	
-            
+
+
             
         	if(qbank.equals("no interview scheduled for this roll number")||qbank.equals("Exception called"))
         		resString="you are not enrolled for this interview";
         	else
         	{
-        		/*
-        		String responseText=interview_no + " " + qbank;
-                return newAskResponse(responseText, responseText);
-				*/
+        		
+				
         		resString="your qbank is "+qbank;
         		
         		System.out.println("url3");
         		String url3_is=ec2_ip+"/bankToQuestions.php?bank_id="+qbank;	
             	String ques_nos=urlCode(url3_is);
             	answer=ques_nos.split(",");
-            	System.out.println(qbank);
-            	System.out.println(answer);
-            	for(int i=0;i<answer.length;i++)
+            	for(int i=0;i<answer.length-1;i++)
             	{
             		System.out.println(answer[i]);
             	}
+
             	resString=getQuestion(session);
         	}
         	}

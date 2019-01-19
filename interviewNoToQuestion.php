@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 } 
 function getAns($stuid){
     global $conn;
-    $sql = "SELECT bank_id from interviews_master where interview_no=".$stuid;
+    $sql = "SELECT bank_id from interviews_master where interview_id=".$stuid;
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
