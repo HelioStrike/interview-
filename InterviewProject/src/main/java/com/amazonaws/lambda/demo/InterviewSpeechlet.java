@@ -273,7 +273,7 @@ catch (Exception e) {
 				session.setAttribute("qcount",ques);
 				System.out.println("question"+ques);
 				System.out.println(answer[ques-1]);
-				String url_is=ec2_ip+"/idToQuestion.php?id='"+answer[ques-1]+"'";
+				String url_is=ec2_ip+"/idToQuestion.php?id="+answer[ques-1] ;
 	        	String ques_ans=urlCode(url_is); 
 	        	System.out.println(ques_ans);
 				String ques_arr[]=ques_ans.split("xx===xx");

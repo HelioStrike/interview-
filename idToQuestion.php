@@ -14,8 +14,8 @@ $result = $conn->query($command);
 //if such entries exist
 if($result->num_rows > 0)
 {
-    //print out question
-    echo $row["question_id"] . ",";
+    $row = $result->fetch_assoc();
+    echo $row["question"] . "xx===xx" . $row["answer"];
     
 }
 ?>
