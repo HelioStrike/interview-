@@ -17,10 +17,9 @@ function getAns($stuid){
 
     if ($result->num_rows > 0) {
         // output data of each row
-        while($row = $result->fetch_assoc()) {
-            
-            echo $row["interview_id"]."<br>";
-        }
+        $row = $result->fetch_assoc();    
+        echo $row["interview_id"]."<br>";
+        
     } else {
         echo "no interview scheduled for this roll number";
     }
