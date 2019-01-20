@@ -54,8 +54,14 @@ public class InterviewSpeechlet  implements SpeechletV2{
 		 String reprompt="Dont feel hesitant to ask your query";
 		 return newAskResponse(SpeechOutput,reprompt);
 		 
-		}
-         
+	}
+    
+	//sets status of an interview, identified by its ID
+	public void setInterviewStatus(String interview_id, String status) {
+    	String url2_is=ec2_ip+"/setInterviewStatus.php?id="+interview_id+"&nstatus='"+status+"'";	
+    	urlCode(url2_is);
+	}
+	
 	@Override
 	public SpeechletResponse onIntent(SpeechletRequestEnvelope<IntentRequest> requestEnvelope) {
 		IntentRequest request = requestEnvelope.getRequest();
@@ -152,7 +158,7 @@ public class InterviewSpeechlet  implements SpeechletV2{
         	else
         	{
         		
-				
+				setInterviewStatus(session.getAttribute("Interview_no").toString(),"ongoing");
         		resString="your qbank is "+qbank;
         		
         		System.out.println("url3");
@@ -293,6 +299,7 @@ catch (Exception e) {
 			{
 				System.out.println("answer"+i+"="+session.getAttribute("ans"+i)+"  "+"grade"+i+" "+session.getAttribute("grade"+i));
 			}
+			setInterviewStatus(session.getAttribute("interview_no").toString(),"ended");
 			responseText="thank you for taking the interview,GoodBye";
 		}
 		return responseText;
